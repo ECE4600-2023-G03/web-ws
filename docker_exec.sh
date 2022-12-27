@@ -1,1 +1,1 @@
-docker exec -it cam bash
+docker exec -it webws bash

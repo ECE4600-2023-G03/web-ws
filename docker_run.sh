@@ -1,7 +1,7 @@
 docker run \
 -it \
 --rm \
---name cam \
+--name webws \
 --env="DISPLAY" \
 --env="QT_X11_NO_MITSHM=1" \
 --volume="$HOME/.Xauthority:/root/.Xauthority:rw" \
@@ -10,4 +10,4 @@ docker run \
 --entrypoint /bin/bash \
 -v $(pwd):/home/cam-ws/ \
 -w /home/cam-ws/ \
-sim:camera
+sim:web

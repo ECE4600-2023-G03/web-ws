@@ -1,1 +1,1 @@
-docker build -t sim:camera .
+docker build -t sim:web .
