@@ -4,7 +4,10 @@
 - build docker container
 - run docker container
 - source underlay
-- in the /web-ws directory: `colcon build --symlink-install`
+- in the /web-ws directory, create a `/src` folder
+- clone web_video_server package: `git clone -b ros2 https://github.com/RobotWebTools/web_video_server`
+- navigate back to /web-ws directory
+- `colcon build --symlink-install`
 - deprecated errors of the web_video_server package are ok
 
 ## Two middlewares
