@@ -10,18 +10,19 @@
     <ul>
       <li>Run a web_video_server connection at <code>ws://localhost:8080</code></li>
       <li>Run a Rosbridge connection at <code>ws://localhost:9090</code></li>
-      <li>Start publishing ROS messages to <code>/my_topic</code></li>
     </ul>
 
     <hr/>
     
     <p>Connection: <span id="status" style="font-weight: bold;">N/A</span></p>
 
-    <p><code>/my_topic</code> messages received: <ul id="messages" style="font-weight: bold;"></ul></p>
+    <!-- <p><code>/string_topic</code> messages received: <ul id="string_messages" style="font-weight: bold;"></ul></p> -->
+    <p><code>/string_topic</code> messages received: <p id="string_messages" style="font-weight: bold"> </p> </p>
+    <p><code>/turtle1/cmd_vel</code> messages received: <p id="twist_messages" style="font-weight: bold;"></p> </p>
 
     <iframe width="700" height="750" controls src="http://10.0.0.245:8080/stream_viewer?topic=/dist_rgb_frame"></iframe>
 
-  
+
     <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
 
     <script type="text/javascript" type="text/javascript">
@@ -44,20 +45,66 @@
         document.getElementById("status").innerHTML = "closed";
       });
 
-      // Create a listener for /my_topic
-      const my_topic_listener = new ROSLIB.Topic({
+      // Create a listener for /string_topic
+      const string_topic = new ROSLIB.Topic({
         ros,
-        name : "/my_topic",
+        name : "/string_topic",
         messageType : "std_msgs/String"
       });
 
-      // When we receive a message on /my_topic, add its data as a list item to the “messages" ul
-      my_topic_listener.subscribe((message) => {
-        const ul = document. getElementById("messages");
-        const newMessage = document. createElement("li");
-        newMessage. appendChild(document. createTextNode(message.data));
-        ul.appendChild(newMessage);
+      // When we receive a message on /string_topic, add its data as a list item to the “string_messages" ul
+      string_topic.subscribe((message) => {
+        const p = document. getElementById("string_messages");
+        p.innerHTML = message.data;
       });
+
+
+      // Create a listener for /twist_topic
+      const twist_topic = new ROSLIB.Topic({
+        ros,
+        name : "/turtle1/cmd_vel",
+        messageType : "geometry_msgs/msg/Twist"
+      });
+
+      // When we receive a message on /twist_topic, add its data as a list item to the “twist_messages" ul
+      twist_topic.subscribe((message) => {
+        const p = document. getElementById("twist_messages");
+        p.innerHTML = message.data;
+      });
+
+  //     var cmdVel = new ROSLIB.Topic({
+  //   ros : ros,
+  //   name : '/cmd_vel',
+  //   messageType : 'geometry_msgs/msg/Twist'
+  // });
+
+  // var twist = new ROSLIB.Message({
+  //   linear : {
+  //     x : 0.1,
+  //     y : 0.2,
+  //     z : 0.3
+  //   },
+  //   angular : {
+  //     x : -0.1,
+  //     y : -0.2,
+  //     z : -0.3
+  //   }
+  // });
+  // cmdVel.publish(twist);
+
+  //     ros.getParams(function(params) {
+  //   console.log(params);
+  //   });
+
+  // var maxVelX = new ROSLIB.Param({
+  //   ros : ros,
+  //   name : 'max_vel_y'
+  // });
+
+  // maxVelX.set(0.8);
+  // maxVelX.get(function(value) {
+  //   console.log('MAX VAL: ' + value);
+  // });
     </script>
 
 

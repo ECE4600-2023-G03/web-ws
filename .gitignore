@@ -1,1 +1,5 @@
 rgb_640_15fps/
+build/
+install/
+log/
+launch/__pycache__

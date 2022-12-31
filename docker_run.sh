@@ -8,6 +8,6 @@ docker run \
 --net=host \
 -e ROS_DOMAIN_ID=2  \
 --entrypoint /bin/bash \
--v $(pwd):/home/cam-ws/ \
--w /home/cam-ws/ \
+-v $(pwd):/home/web-ws/ \
+-w /home/web-ws/ \
 sim:web

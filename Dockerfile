@@ -15,6 +15,7 @@ RUN apt update && \
     nano \
     vim \
     sqlite3 \
+    curl \
     python3-pip
 
 RUN pip install setuptools==58.2.0
@@ -29,3 +30,11 @@ RUN apt install -y \
     python3-colcon-common-extensions \
     ros-humble-rosbridge-server -y \
     ros-humble-async-web-server-cpp -y 
+
+# Install Node.js
+RUN curl --silent --location https://deb.nodesource.com/setup_19.x | sudo -E bash -
+RUN apt-get install --yes nodejs
+RUN apt-get install --yes build-essential
+
+# Binds to port 3000
+EXPOSE  3000

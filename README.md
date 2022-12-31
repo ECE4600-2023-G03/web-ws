@@ -1,22 +1,24 @@
 # web-ws
 
 ## Setup 
-- build docker container
-- run docker container
-- source underlay
+- build docker container: `./docker_build.sh`
+- run docker container: `./docker_run.sh`
+- source underlay: `source source.sh`
 - in the `/web-ws` directory, create a `/src` folder
   - clone web_video_server package: `git clone -b ros2 https://github.com/RobotWebTools/web_video_server`
 - navigate back to `/web-ws` directory
   - `colcon build --symlink-install`
 - deprecated errors of the web_video_server package are ok
 
-## Two middlewares
-- run web_video_server: `ros2 run web_video_server web_video_server`
-- run rosbridge: `ros2 launch rosbridge_server rosbridge_websocket_launch.xml`
+## Launch file
+- run: `ros2 launch launch/launch_all.py`
+- This launch file launches:
+  - two middlewares
+    - web_video_server (`ros2 run web_video_server web_video_server`)
+    -  rosbridge (`ros2 launch rosbridge_server rosbridge_websocket_launch.xml`)
 
 
 ## Node JS
-- Install NodeJS LTS version [here](https://nodejs.org/en/)
 - Run NodeJS on host: `node app.js`
 
 
