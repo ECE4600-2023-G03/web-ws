@@ -108,7 +108,7 @@ def generate_launch_description():
                 ],
             )
 
-    # ros2 topic pub /int16_topic std_msgs/msg/Int16 "data: 28"
+    # ros2 topic pub /bool_topic std_msgs/msg/Bool "data: True"
     bool_topic = ExecuteProcess(
                 cmd=[
                     "ros2",
