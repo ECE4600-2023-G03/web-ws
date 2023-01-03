@@ -14,13 +14,53 @@
 
     <hr/>
     
-    <p>Connection: <span id="status" style="font-weight: bold;">N/A</span></p>
+    <ol>
+      <li>
+        <p>Connection: <span id="status" style="font-weight: bold;">N/A</span></p>
+      </li>
 
-    <!-- <p><code>/string_topic</code> messages received: <ul id="string_messages" style="font-weight: bold;"></ul></p> -->
-    <p><code>/string_topic</code> messages received: <p id="string_messages" style="font-weight: bold"> </p> </p>
-    <p><code>/turtle1/cmd_vel</code> messages received: <p id="twist_messages" style="font-weight: bold;"></p> </p>
+      <li>
+        <p><code>/int16_topic</code> message received:  <code>(std_msgs/msg/Int16)</code> </p>
+        <p>Number of balls:  <span id="int16_messages" style="font-weight: bold"> </span> </p>
+      </li>
 
-    <iframe width="700" height="750" controls src="http://10.0.0.245:8080/stream_viewer?topic=/dist_rgb_frame"></iframe>
+      <li>
+        <p><code>/bool_topic</code> message received:   <code>(std_msgs/msg/Bool)</code> <p id="bool_messages" style="font-weight: bold"> </p> </p> 
+      </li>
+
+      <li>
+        <p><code>/string_topic</code> messages received:  <code>(std_msgs/msg/String)</code> <p id="string_messages" style="font-weight: bold"> </p> </p>
+      </li>
+
+      <li>
+        <p><code>/turtle1/cmd_vel</code> messages received:  <code>(geometry_msgs/msg/Twist)</code> </p>
+        <ul>
+          <li>
+            <p>linear: { </p>
+              <p>&emsp; x: <span id="linear_x" style="font-weight: bold"></span> </p>
+              <p>&emsp; y: <span id="linear_y" style="font-weight: bold"></span> </p>
+              <p>&emsp; z: <span id="linear_z" style="font-weight: bold"></span> </p>
+            }
+          </li>
+            
+          <li>
+            <p>angular: { </p>
+              <p>&emsp; x: <span id="angular_x" style="font-weight: bold"></span> </p>
+              <p>&emsp; y: <span id="angular_y" style="font-weight: bold"></span> </p>
+              <p>&emsp; z: <span id="angular_z" style="font-weight: bold"></span> </p>
+            }
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <p><code>/dist_rgb_frame</code> video feed:  <code>(rosbridge)</code> </p>
+        <iframe width="640" height="640" controls src="http://10.0.0.245:8080/stream?topic=/dist_rgb_frame"></iframe>
+      </li>
+    </ol>
+
+
+
 
 
     <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
@@ -44,21 +84,26 @@
       ros.on('close', () => {
         document.getElementById("status").innerHTML = "closed";
       });
-
-      // Create a listener for /string_topic
-      const string_topic = new ROSLIB.Topic({
-        ros,
-        name : "/string_topic",
-        messageType : "std_msgs/String"
-      });
-
-      // When we receive a message on /string_topic, add its data as a list item to the “string_messages" ul
-      string_topic.subscribe((message) => {
-        const p = document. getElementById("string_messages");
-        p.innerHTML = message.data;
-      });
+    </script>
 
 
+    <script type="text/javascript" type="text/javascript">
+    // Create a listener for /string_topic
+    const string_topic = new ROSLIB.Topic({
+      ros,
+      name : "/string_topic",
+      messageType : "std_msgs/String"
+    });
+
+    // When we receive a message on /string_topic, add its data as a list item to the “string_messages" ul
+    string_topic.subscribe((message) => {
+      const p = document. getElementById("string_messages");
+      p.innerHTML = message.data;
+    });
+    </script>
+
+
+    <script type="text/javascript" type="text/javascript">
       // Create a listener for /twist_topic
       const twist_topic = new ROSLIB.Topic({
         ros,
@@ -68,45 +113,44 @@
 
       // When we receive a message on /twist_topic, add its data as a list item to the “twist_messages" ul
       twist_topic.subscribe((message) => {
-        const p = document. getElementById("twist_messages");
-        p.innerHTML = message.data;
+        document. getElementById("linear_x").innerHTML = message.linear.x;
+        document. getElementById("linear_y").innerHTML = message.linear.y;
+        document. getElementById("linear_z").innerHTML = message.linear.z;
+        document. getElementById("angular_x").innerHTML = message.angular.x;
+        document. getElementById("angular_y").innerHTML = message.angular.y;
+        document. getElementById("angular_z").innerHTML = message.angular.z;
       });
-
-  //     var cmdVel = new ROSLIB.Topic({
-  //   ros : ros,
-  //   name : '/cmd_vel',
-  //   messageType : 'geometry_msgs/msg/Twist'
-  // });
-
-  // var twist = new ROSLIB.Message({
-  //   linear : {
-  //     x : 0.1,
-  //     y : 0.2,
-  //     z : 0.3
-  //   },
-  //   angular : {
-  //     x : -0.1,
-  //     y : -0.2,
-  //     z : -0.3
-  //   }
-  // });
-  // cmdVel.publish(twist);
-
-  //     ros.getParams(function(params) {
-  //   console.log(params);
-  //   });
-
-  // var maxVelX = new ROSLIB.Param({
-  //   ros : ros,
-  //   name : 'max_vel_y'
-  // });
-
-  // maxVelX.set(0.8);
-  // maxVelX.get(function(value) {
-  //   console.log('MAX VAL: ' + value);
-  // });
     </script>
 
+
+    <script type="text/javascript" type="text/javascript">
+      // Create a listener for /twist_topic
+      const int16_topic = new ROSLIB.Topic({
+        ros,
+        name : "/int16_topic",
+        messageType : "std_msgs/msg/Int16"
+      });
+
+      // When we receive a message on /twist_topic, add its data as a list item to the “twist_messages" ul
+      int16_topic.subscribe((message) => {
+        document. getElementById("int16_messages").innerHTML = message.data;
+      });
+    </script>
+
+
+    <script type="text/javascript" type="text/javascript">
+      // Create a listener for /twist_topic
+      const bool_topic = new ROSLIB.Topic({
+        ros,
+        name : "/bool_topic",
+        messageType : "std_msgs/msg/Bool"
+      });
+
+      // When we receive a message on /twist_topic, add its data as a list item to the “twist_messages" ul
+      bool_topic.subscribe((message) => {
+        document. getElementById("bool_messages").innerHTML = message.data;
+      });
+    </script>
 
   </body>
 </html>
