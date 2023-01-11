@@ -94,7 +94,6 @@
                   </h4>
                 </div>
               </div>
-            </div>
 
             <div class="card text-center border-left-success shadow mb-4">
               <!-- Card Body -->
@@ -110,6 +109,9 @@
               </div>
             </div>
 
+          </div>
+
+            <div class="col-xs-3 col-sm-3 col-md-3">
 
             <div class="card text-center border-left-success shadow mb-4">
               <!-- Card Body -->
@@ -119,59 +121,88 @@
                 >
                   Twist Topic
                   <div class="mt-2 h5 mb-0 font-weight-bold text-gray-800">
-                    <ul>
-                      <li>
+                    <p>
                         <p>linear: { </p>
                           <p>&emsp; x: <span id="linear_x" style="font-weight: bold"></span> </p>
                           <p>&emsp; y: <span id="linear_y" style="font-weight: bold"></span> </p>
                           <p>&emsp; z: <span id="linear_z" style="font-weight: bold"></span> </p>
                         }
-                      </li>
                         
-                      <li>
                         <p>angular: { </p>
                           <p>&emsp; x: <span id="angular_x" style="font-weight: bold"></span> </p>
                           <p>&emsp; y: <span id="angular_y" style="font-weight: bold"></span> </p>
                           <p>&emsp; z: <span id="angular_z" style="font-weight: bold"></span> </p>
                         }
-                      </li>
-                    </ul>
+                    </p>
+                  </div>
+                </h4>
+              </div>
+            </div>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-3">
+
+            <div class="card text-center border-left-success shadow mb-4">
+              <!-- Card Body -->
+              <div class="card-body">
+                <h4
+                  class="text-lg font-weight-bold text-primary text-uppercase mb-1"
+                >
+                  Int16 Topic (Robot Speed) 
+                  <div class="mt-2 h5 mb-0 font-weight-bold text-gray-800">
+                    <span id="int16_messages1" style="font-weight: bold"> </span> m/s
                   </div>
                 </h4>
               </div>
             </div>
 
-
-              <div class="card text-center border-left-success shadow mb-4">
-                <!-- Card Body -->
-                <div class="card-body">
-                  <h4
-                    class="text-lg font-weight-bold text-primary text-uppercase mb-1"
-                  >
-                    Int16 Topic (Robot Speed) 
-                    <div class="mt-2 h5 mb-0 font-weight-bold text-gray-800">
-                      <span id="int16_messages1" style="font-weight: bold"> </span> m/s
-                    </div>
-                  </h4>
-                </div>
+            <div class="card text-center border-left-success shadow mb-4">
+              <!-- Card Body -->
+              <div class="card-body">
+                <h4
+                  class="text-lg font-weight-bold text-primary text-uppercase mb-1"
+                >
+                  Number of Balls Collected
+                  <div class="mt-2 h5 mb-0 font-weight-bold text-gray-800">
+                    10
+                  </div>
+                </h4>
               </div>
+            </div>
 
-
-              <div class="card text-center border-left-success shadow mb-4">
+            <div class="card text-center border-left-success shadow mb-4">
+              <!-- Card Body -->
+              <div class="card-body">
+                <h4
+                  class="text-lg font-weight-bold text-primary text-uppercase mb-1"
+                >
+                  Int16 Topic (Number of Balls Collected) 
+                  <div class="mt-2 h5 mb-0 font-weight-bold text-gray-800">
+                    <span id="int16_messages2" style="font-weight: bold"> </span>
+                  </div>
+                </h4>
+              </div>
+            </div>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-3">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                  class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+                >
+                  <h6 class="m-0 font-weight-bold text-primary">Speed Chart</h6>
+                </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <h4
-                    class="text-lg font-weight-bold text-primary text-uppercase mb-1"
-                  >
-                    Int16 Topic (Number of Balls Collected) 
-                    <div class="mt-2 h5 mb-0 font-weight-bold text-gray-800">
-                      <span id="int16_messages2" style="font-weight: bold"> </span>
-                    </div>
-                  </h4>
+                  <div class="chart-area">
+                    <canvas id="myAreaChart"></canvas>
+                  </div>
                 </div>
               </div>
             </div>
 
+          </div>
+
+          <div class="row">             
             <div class="col-xs-6 col-sm-6 col-md-6">
               <div class="card shadow mb-4">
                 <div
@@ -196,24 +227,18 @@
               </div>
             </div>
 
-            <div class="col-xs-3 col-sm-3 col-md-3">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div
-                  class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
-                >
-                  <h6 class="m-0 font-weight-bold text-primary">Speed Chart</h6>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
           </div>
 
+          <div class="row"> 
+            <div class="col-xs-4 col-sm-4 col-md-4 mb-6"></div>
+            <button class="btn btn-danger mr-4 mb-4 col-xs-4 col-sm-4 col-md-4" type="button">
+              <div class="mt-2 h5 mb-0 font-weight-bold text-white">
+              EMERGENCY STOP
+              </div>               
+          </button>
+          <div class="col-xs-6 col-sm-6 col-md-6 mb-6"></div>
+          </div>
           <div class="row">
             <div class="col-xs-3 col-sm-3 col-md-3 mb-6"></div>
             <div class="col-xs-6 col-sm-6 col-md-6 mb-6 d-flex justify-content-center">
@@ -221,12 +246,11 @@
               <button onclick="publish()" class="btn btn-success mr-4 mb-4" type="button">
                     <div class="mt-2 h5 mb-0 font-weight-bold text-white">
                         Start Collecting
-                    </div>
-                        
+                    </div>     
                 </button>
-                <button class="btn btn-danger mr-4 mb-4" type="button">
+                <button class="btn btn-warning mr-4 mb-4" type="button">
                     <div class="mt-2 h5 mb-0 font-weight-bold text-white">
-                    Stop Collecting
+                    Back to Home
                     </div>               
                 </button>
                 <button class="btn btn-secondary mb-4" type="button">
