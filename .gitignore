@@ -3,3 +3,4 @@ build/
 install/
 log/
 launch/__pycache__
+website/node_modules
