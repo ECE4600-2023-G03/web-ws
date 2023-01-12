@@ -38,3 +38,4 @@ RUN apt-get install --yes build-essential
 
 # Binds to port 3000
 EXPOSE  3000
+# 169.254.1.10

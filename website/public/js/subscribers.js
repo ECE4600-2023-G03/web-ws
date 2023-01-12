@@ -5,7 +5,7 @@ const string_topic = new ROSLIB.Topic({
     messageType : "std_msgs/String"
 });
 
-// When we receive a message on /string_topic, add its data as a list item to the “string_messages" ul
+// When we receive a message on /string_topic, add its data to the “string_messages" 
 string_topic.subscribe((message) => {
     const p = document. getElementById("string_messages");
     p.innerHTML = message.data;
@@ -19,7 +19,7 @@ const twist_topic = new ROSLIB.Topic({
     messageType : "geometry_msgs/msg/Twist"
 });
 
-// When we receive a message on /twist_topic, add its data as a list item to the “twist_messages" ul
+// When we receive a message on /twist_topic, add its data to the “twist_messages" 
 twist_topic.subscribe((message) => {
     document. getElementById("linear_x").innerHTML = message.linear.x;
     document. getElementById("linear_y").innerHTML = message.linear.y;
@@ -30,28 +30,28 @@ twist_topic.subscribe((message) => {
 });
 
 
-// Create a listener for /twist_topic
+// Create a listener for /int16_topic
 const int16_topic = new ROSLIB.Topic({
     ros,
     name : "/int16_topic",
     messageType : "std_msgs/msg/Int16"
 });
 
-// When we receive a message on /twist_topic, add its data as a list item to the “twist_messages" ul
+// When we receive a message on /int16_topic, add its data to the “int16_messages1"
 int16_topic.subscribe((message) => {
     document. getElementById("int16_messages1").innerHTML = message.data;
     document. getElementById("int16_messages2").innerHTML = message.data;
 });
 
 
-// Create a listener for /twist_topic
+// Create a listener for /bool_topic
 const bool_topic = new ROSLIB.Topic({
     ros,
     name : "/bool_topic",
     messageType : "std_msgs/msg/Bool"
 });
 
-// When we receive a message on /twist_topic, add its data as a list item to the “twist_messages" ul
+// When we receive a message on /bool_topic, add its data to the “bool_messages" 
 bool_topic.subscribe((message) => {
     document. getElementById("bool_messages").innerHTML = message.data;
 });

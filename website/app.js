@@ -30,10 +30,14 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
-// sendFile will go here
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '/index.html'));
 });
+
+app.get('/testpage', function(req, res) {
+  res.sendFile(path.join(__dirname, '/testpage.html'));
+});
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.listen(port);
