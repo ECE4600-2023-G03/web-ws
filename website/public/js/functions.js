@@ -1,5 +1,5 @@
 // When we receive a message on /my_topic, add its data as a list item to the "messages" ul
-function publish() {
+function start_collection() {
     // Create a listener for /my_topic
     const my_topic_listener = new ROSLIB.Topic({
         ros,
@@ -8,18 +8,105 @@ function publish() {
     });
 
     var str = new ROSLIB.Message({
-        data: 'hello'
+        data: 'Collecting'
     });
 
     my_topic_listener.publish(str);
 
     my_topic_listener.subscribe((message) => {
-        const ul = document.getElementById("messages");
-        const newMessage = document.createElement("p");
-        newMessage.appendChild(document.createTextNode(str.data));
-        ul.appendChild(newMessage);
+        document.getElementById("messages").innerHTML = message.data;
     });
 
+    // Create a listener for /twist_topic
+    const bool_topic = new ROSLIB.Topic({
+        ros,
+        name: "/bool_topic",
+        messageType: "std_msgs/msg/Bool"
+    });
+
+    var bol = new ROSLIB.Message({
+        data: true
+    });
+
+    bool_topic.publish(bol);
+
+    // When we receive a message on /twist_topic, add its data as a list item to the “twist_messages" ul
+    bool_topic.subscribe((message) => {
+        document.getElementById("bool_messages").innerHTML = message.data;
+    });
 }
 
+function go_home() {
+    // Create a listener for /my_topic
+    const my_topic_listener = new ROSLIB.Topic({
+        ros,
+        name: "/my_topic",
+        messageType: "std_msgs/String",
+    });
+
+    var str = new ROSLIB.Message({
+        data: 'Going back Home'
+    });
+
+    my_topic_listener.publish(str);
+
+    my_topic_listener.subscribe((message) => {
+        document.getElementById("messages").innerHTML = message.data;
+    });
+
+    // Create a listener for /twist_topic
+    const bool_topic = new ROSLIB.Topic({
+        ros,
+        name: "/bool_topic",
+        messageType: "std_msgs/msg/Bool"
+    });
+
+    var bol = new ROSLIB.Message({
+        data: false
+    });
+
+    bool_topic.publish(bol);
+
+    // When we receive a message on /twist_topic, add its data as a list item to the “twist_messages" ul
+    bool_topic.subscribe((message) => {
+        document.getElementById("bool_messages").innerHTML = message.data;
+    });
+}
+
+function emer_stop() {
+    // Create a listener for /my_topic
+    const my_topic_listener = new ROSLIB.Topic({
+        ros,
+        name: "/my_topic",
+        messageType: "std_msgs/String",
+    });
+
+    var str = new ROSLIB.Message({
+        data: 'Stopping'
+    });
+
+    my_topic_listener.publish(str);
+
+    my_topic_listener.subscribe((message) => {
+        document.getElementById("messages").innerHTML = message.data;
+    });
+
+    // Create a listener for /twist_topic
+    const bool_topic = new ROSLIB.Topic({
+        ros,
+        name: "/bool_topic",
+        messageType: "std_msgs/msg/Bool"
+    });
+
+    var bol = new ROSLIB.Message({
+        data: false
+    });
+
+    bool_topic.publish(bol);
+
+    // When we receive a message on /twist_topic, add its data as a list item to the “twist_messages" ul
+    bool_topic.subscribe((message) => {
+        document.getElementById("bool_messages").innerHTML = message.data;
+    });
+}
 
