@@ -1,9 +1,9 @@
 // When we receive a message on /my_topic, add its data as a list item to the "messages" ul
 function start_collection() {
     // Create a listener for /my_topic
-    const my_topic_listener = new ROSLIB.Topic({
+    const status_topic = new ROSLIB.Topic({
         ros,
-        name: "/my_topic",
+        name: "/status_topic",
         messageType: "std_msgs/String",
     });
 
@@ -11,9 +11,9 @@ function start_collection() {
         data: 'Collecting'
     });
 
-    my_topic_listener.publish(str);
+    status_topic.publish(str);
 
-    my_topic_listener.subscribe((message) => {
+    status_topic.subscribe((message) => {
         document.getElementById("messages").innerHTML = message.data;
     });
 
@@ -38,9 +38,9 @@ function start_collection() {
 
 function go_home() {
     // Create a listener for /my_topic
-    const my_topic_listener = new ROSLIB.Topic({
+    const status_topic = new ROSLIB.Topic({
         ros,
-        name: "/my_topic",
+        name: "/status_topic",
         messageType: "std_msgs/String",
     });
 
@@ -48,9 +48,9 @@ function go_home() {
         data: 'Going back Home'
     });
 
-    my_topic_listener.publish(str);
+    status_topic.publish(str);
 
-    my_topic_listener.subscribe((message) => {
+    status_topic.subscribe((message) => {
         document.getElementById("messages").innerHTML = message.data;
     });
 
@@ -75,9 +75,9 @@ function go_home() {
 
 function emer_stop() {
     // Create a listener for /my_topic
-    const my_topic_listener = new ROSLIB.Topic({
+    const status_topic = new ROSLIB.Topic({
         ros,
-        name: "/my_topic",
+        name: "/status_topic",
         messageType: "std_msgs/String",
     });
 
@@ -85,9 +85,9 @@ function emer_stop() {
         data: 'Stopping'
     });
 
-    my_topic_listener.publish(str);
+    status_topic.publish(str);
 
-    my_topic_listener.subscribe((message) => {
+    status_topic.subscribe((message) => {
         document.getElementById("messages").innerHTML = message.data;
     });
 

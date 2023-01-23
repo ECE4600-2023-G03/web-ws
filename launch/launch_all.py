@@ -45,14 +45,19 @@ def generate_launch_description():
         )
 
     # include xml launch file
-    rosbridge = IncludeLaunchDescription(
-        XMLLaunchDescriptionSource(
-            os.path.join(
-                get_package_share_directory("rosbridge_server"),
-                "launch/rosbridge_websocket_launch.xml",
-            )
+    # rosbridge = IncludeLaunchDescription(
+    #     XMLLaunchDescriptionSource(
+    #         os.path.join(
+    #             get_package_share_directory("rosbridge_server"),
+    #             "launch/rosbridge_websocket_launch.xml",
+    #         )
+    #     )
+    # )
+    
+    rosbridge = Node(
+            package='rosbridge_server',
+            executable='rosbridge_websocket',
         )
-    )
 
     # ros2 bag play -l rgb_640_15fps/
     camera = ExecuteProcess(
@@ -78,10 +83,10 @@ def generate_launch_description():
     #             ],
     #         )
 
-    string_topic = Node(
-            package='py_pubsub',
-            executable='talker',
-        )
+    # string_topic = Node(
+    #         package='py_pubsub',
+    #         executable='talker',
+    #     )
 
     # ros2 topic pub --rate 1 /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}"
     twist_topic = ExecuteProcess(
@@ -129,7 +134,7 @@ def generate_launch_description():
         web_video_server,
         rosbridge,
         camera,
-        string_topic,
+        # string_topic,
         twist_topic,
         int16_topic,
         bool_topic
